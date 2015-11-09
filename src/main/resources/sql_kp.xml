@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+			http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd"
+	default-autowire="byName">
+
+
+	<bean id="sqlUser_getRoleNameByUserId" class="java.lang.String">
+		<constructor-arg>
+			<value>
+			<![CDATA[
+			select r.role_name from user u,role r WHERE u.role_id = r.id AND u.id = :userId
+			]]>
+			</value>
+		</constructor-arg>
+	</bean>
+
+	<bean id="sqlUser_getUserByLoginName" class="java.lang.String">
+		<constructor-arg>
+			<value>
+			<![CDATA[
+			select * from user where login_name = :loginName
+			]]>
+			</value>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="sqlQuestion_answerCounterAdded" class="java.lang.String">
+		<constructor-arg>
+			<value>
+			<![CDATA[
+			update question set answers = answers + 1, last_answer_date = now() where id = :questionId
+			]]>
+			</value>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="sqlQuestion_viewCounterAdded" class="java.lang.String">
+		<constructor-arg>
+			<value>
+			<![CDATA[
+			update question set views = views + 1, last_view_date = now() where id = :questionId
+			]]>
+			</value>
+		</constructor-arg>
+	</bean>
+	
+</beans>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+			http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd"
+	default-autowire="byName">
+
+
+	<bean id="sql_getLocationInfo" class="java.lang.String">
+		<constructor-arg>
+			<value>
+			<![CDATA[
+			select id,name from locations where parent_id = :locationId
+			]]>
+			</value>
+		</constructor-arg>
+	</bean>
+
+	<bean id="sql_getUserByNameOrPass" class="java.lang.String">
+		<constructor-arg>
+			<value>
+			<![CDATA[
+			select count(*) from user where  username=:userName and password=:passWord
+			]]>
+			</value>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="sql_insertUserInfo" class="java.lang.String">
+		<constructor-arg>
+			<value>
+			<![CDATA[
+			insert into user(username,password,role_id,phone,email) values(:userName,:passWord,:roleId,:phone,:email);
+			]]>
+			</value>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="sql_updateUserInfo" class="java.lang.String">
+		<constructor-arg>
+			<value>
+			<![CDATA[
+			update user set (:userName is null or username=:userName),(:passWord is null or password=:passWord),(:roleId is null or role_id=:roleId)
+				,(:phone is null or phone=:phone),(:email is null or email=:email) where id=:id;
+			]]>
+			</value>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="sql_getUserInfoById" class="java.lang.String">
+		<constructor-arg>
+			<value>
+			<![CDATA[
+			select * from user where id=:id;
+			]]>
+			</value>
+		</constructor-arg>
+	</bean>
+	
+		<bean id="sql_getAllOfUser" class="java.lang.String">
+		<constructor-arg>
+			<value>
+			<![CDATA[
+			select u.username,r.role_name,u.id,u.phone,u.email from `user` u,role r where u.role_id=r.id
+			]]>
+			</value>
+		</constructor-arg>
+	</bean>
+</beans>

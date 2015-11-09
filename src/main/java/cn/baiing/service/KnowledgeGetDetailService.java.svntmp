@@ -1,0 +1,33 @@
+package cn.baiing.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import cn.baiing.c.meta.QueryType;
+import cn.baiing.c.search.SearchClient;
+import cn.baiing.c.search.SearchProxyFactory;
+import cn.baiing.c.search.SearchRequest;
+import cn.baiing.dao.util.WebChatBase;
+
+@Service
+public class KnowledgeGetDetailService {
+
+	@Autowired
+	private SearchProxyFactory searchProxyFactory;
+	
+	public String getKnowledgeDetail(String knowledgeId){
+		SearchClient client = new SearchClient(searchProxyFactory.getSearchServiceHost(), 
+				searchProxyFactory.getSearchServicePort());
+		SearchRequest request = buildDetailRequest(knowledgeId);
+		String result = client.search(request.buildString4CSearch());
+		return result;
+	}
+	
+	private SearchRequest buildDetailRequest(String knowledgeId){
+		SearchRequest request = new SearchRequest();
+		request.setKeyword(knowledgeId);
+		request.setQueryType(QueryType.IDQ);
+		return request;
+	}
+	
+}
