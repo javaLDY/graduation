@@ -1,6 +1,8 @@
   <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
     <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+    <script src="<%=request.getContextPath() %>/static/lib/jquery-1.11.1.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="<%=request.getContextPath()%>/static/js/jquery.colorbox.js"></script>
  <script src="<%=request.getContextPath() %>/static/js/user/user.js" type="text/javascript"></script>
  <script type="text/javascript">var _path = '${ctx}'</script>
  <script type="text/javascript">
@@ -19,7 +21,7 @@
 			    		  "<td>"+data[i].phone+"</td>"+
 			    		  "<td>"+data[i].email+"</td>"+
 			    		  "<td>"+
-			    		  "<i class='fa fa-pencil' id='newProfile"+i+"' onclick='profile("+i+")'></i>"+
+			    		  "<i class='fa fa-pencil' id='profile"+i+"' onclick='profile("+data[i].id+")'></i>"+
 			    		  "<a href='#myModal' role='button' data-toggle='modal'><i class='fa fa-trash-o'></i></a>"+
 			    		  "</td>"+
 			    		  "</tr>"

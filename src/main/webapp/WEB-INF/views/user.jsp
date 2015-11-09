@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
 <script src="<%=request.getContextPath() %>/static/js/user/user.js" type="text/javascript"></script>
+
 <meta charset="utf-8">
      <div class="header">
             
@@ -24,7 +27,7 @@
       <form id="tab">
         <div class="form-group">
         <label>姓名</label>
-        <input type="text" id="insertName" class="form-control">
+        <input type="text" id="insertName" class="form-control" >
         </div>
         <div class="form-group">
         <label>密码</label>
@@ -37,11 +40,11 @@
         </div>
         <div class="form-group">
         <label>电话</label>
-        <input type="text" id="insertPhone" class="form-control">
+        <input type="text" id="insertPhone" class="form-control" value="${user.phome }">
         </div>
         <div class="form-group">
         <label>Email</label>
-        <input type="text" id="insertEmail" class="form-control">
+        <input type="text" id="insertEmail" class="form-control" value="${user.email }">
         </div>
      
     <div class="btn-toolbar list-toolbar">

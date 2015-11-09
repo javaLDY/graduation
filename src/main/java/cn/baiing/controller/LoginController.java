@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.aspectj.weaver.AjAttribute;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -80,7 +81,7 @@ public class LoginController {
 		return WebChatHelper.ajaxJson(result.toString(), response);
 	}
 	
-	@RequestMapping("/getUserInfoById")
+	@RequestMapping(value = "/getUserInfoById", method = RequestMethod.POST)
 	public String getUserInfoById(String id, HttpServletResponse response){
 		JSONObject result = new JSONObject();
 		result = userInfoService.getUserInfoById(id);
